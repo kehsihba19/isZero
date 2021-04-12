@@ -19,10 +19,21 @@ def check_zero(word):
 def index():
 	return render_template('index.html')
 
+@app.route('/api/')
+def api_home():
+	data = {'message':"API is Live"}
+	return jsonify(data)
+
 @app.route('/api/<word>')
 def api(word):
 	data = check_zero(word)
 	return jsonify(data)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    data = {'message':"API is Live"}
+    return jsonify(data)
+
 
 if __name__ == "__main__":
     #app.debug = True
